@@ -184,6 +184,13 @@ Redact personal details — a name, a phone number, an address, an ID — and no
 code, commands, tool output or reasoning is grounds for disqualification, and the warning is not
 theoretical.
 
+Two flags rescue the awkward cases. `--session <file>` adds a session the search did not find, taken
+whole; `--parent-session <file>` names the chat that started yours, nearest first, up to four links.
+That second one matters more than it looks: if a scheduler, another agent or a resumed conversation
+started your session, the person's real prompt lives in the chat above yours, and an entry that does
+not carry the chain up to their words is rejected. When in doubt, run the real `bundle` — it prints
+which sessions it took and which links it followed, and it writes nothing when a link is missing.
+
 ## 5. Submit
 
 Before the first submission, run the site's own checks offline:
@@ -254,6 +261,23 @@ the reward stays approved for another attempt from a wallet or a place that pass
 
 Keep about 0.0025 SOL in the claiming wallet for the token account's rent, or let the claim take it
 out of the prize with `--sol-from-prize`.
+
+## Day-one checklist
+
+Print this and tick it as you go. Every line here exists because something on this page was learned
+the hard way.
+
+- [ ] Account created, wallet bound, payout destination **pinned**
+- [ ] Bounty's `requirements.json` read: `checks`, `quota`, `deadlines`, `how_to_submit`
+- [ ] Kit unpacked, `RULES.txt` read — not skimmed
+- [ ] New public repository created **after** the bounty opened, with an OSI license
+- [ ] Agent session started after the opening, and it is the session you will bundle
+- [ ] Deliverable written in at least two passes, so the history shows work
+- [ ] `README.md` at the root, containing your own `/r/<code>`, with three live badges filled in
+- [ ] About: homepage `https://make.fun/bounty/<slug>`, topic `makefun`
+- [ ] `bundle --dry-run` clean: prompt, system setup, instruction files, MCP list
+- [ ] `check` exits zero
+- [ ] `submit` returns 202; the claim code is saved somewhere that survives a reboot
 
 ## Getting paid without winning: participation rewards
 
